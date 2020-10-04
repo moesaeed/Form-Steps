@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Step From Wizard - 11 - Validation example with jQuery Validation</title>
+
+    <script src="plugins/jquery-2.1.4.min.js"></script>
+
+    <!-- bootstrap for better look example, but not necessary -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" type="text/css" media="screen, projection">
+
+    <!-- Step Form Wizard plugin -->
+    <link rel="stylesheet" href="step-form-wizard/css/step-form-wizard-all.css" type="text/css" media="screen, projection">
+    <script src="step-form-wizard/js/step-form-wizard.js"></script>
+
+    <!-- nicer scroll in steps -->
+    <link rel="stylesheet" href="plugins/mcustom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <script src="plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- validation library http://jqueryvalidation.org/ -->
+    <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+
+<link rel="stylesheet" href="step-form-wizard/css/override.css" type="text/css" media="screen, projection">
+    <script>
+        var sfw;
+        $(document).ready(function() {
+            var form = $("#wizard_example");
+            form.validate();
+            sfw = $("#wizard_example").stepFormWizard({
+                theme: 'simple', // sea, sky, simple, circle, sun
+                height: 'auto',
+				showNav: 'bottom',
+				transition: 'slide',
+				duration: '100',
+				markPrevSteps: true,
+                onNext: function() {
+                    var valid = form.valid();
+                    // if use height: 'auto' call refresh metod after validation, because validation can change content
+                    //sfw.refresh();
+                    return valid;
+                },
+                onFinish: function() {
+                    var valid = form.valid();
+                    // if use height: 'auto' call refresh metod after validation, because validation can change content
+                    sfw.refresh();
+                    console.log(valid);
+                    return valid;
+                }
+            });
+        })
+        $(window).load(function() {
+            /* only if you want use mcustom scrollbar
+            $(".sf-step").mCustomScrollbar({
+                theme: "dark-3",
+                scrollButtons: {
+                    enable: true
+                }
+            });
+*/
+
+            $(".sf-nav-number").hover(function() {
+                var closest_div = $(this).closest('.sf-nav-step');
+                closest_div.find('.sf-nav-subtext').toggleClass("sf-nav-subtext-show");
+            });
+        });
+    </script>
+
+    <style>
+        pre {
+            margin: 45px 0 60px;
+        }
+
+        h1 {
+            margin: 60px 0 60px 0;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: #c7254e;
+        }
+    </style>
+
+    <style>
+        .optionWrap {
+            display: flex;
+            justify-content: center;
+            margin: 10px auto 20px;
+        }
+        .optionWrap .radio {
+            flex: 1 20%;
+            padding: 10px 5px;
+            max-width: 20%;
+            margin: 0;
+            text-align: center;
+        }
+        .optionWrap .radio .optionTxtWrap {
+            text-align: center;
+        }
+        .optionWrap .radio .optionTxtWrap .optNumWrap {
+            display: block;
+            position: relative;
+            margin: 20px auto;
+        }
+        .optionWrap .radio .optionTxtWrap .optNumWrap .optNum {
+            border: 2px solid #cfcfcf;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-weight: bold;
+        }
+        .optionWrap .radio .optionTxtWrap .optTxt {
+            display: block;
+        }
+        .optionWrap .radio label {
+            padding: 0;
+        }
+        .optionWrap .radio label input[type="radio"] {
+            display: none;
+        }
+        /* .optionWrap .radio label input[type="radio"]:checked {} */
+        .optionWrap .radio label input[type="radio"]:checked + .optionTxtWrap .optNum {
+            background: #7b263d;
+            border-color: #7b263d;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="site-index">
+            <div class="body-content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Validation example with jQuery Validation</h1>
+                        <form id="wizard_example" action="">
+
+
+                            <fieldset>
+                                <legend>Full Name</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+
+                                            <div class="col-lg-12">
+                                                Please give us your full name.
+                                            </div>
+                                            <input type="text" class="form-control" id="InputName" name="InputName" placeholder="Enter Name" required>
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Date of Birth</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Please give us your date of birth.
+                                            </div>
+                                            <input type="date" class="form-control" id="InputDate" name="InputDate" placeholder="Enter Date" required>
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Email</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Please give us your Email Address.
+                                            </div>
+                                            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="ex myname@example.com" required>
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+
+                            <fieldset>
+                                <legend>Address</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Currently we are only serving patients in Qatar.
+                                            </div>
+                                            <input type="text" class="form-control" id="InputStreet" name="InputStreet" placeholder="Street address" required>
+                                            <input type="text" class="form-control" id="InputStreet" name="InputStreet" placeholder="City" required>
+
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Phone Number</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Please Enter your phone number
+                                            </div>
+                                            <input type="tel" class="form-control" id="InputPhone" name="InputPhone" placeholder="+974" required>
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Have you experienced a fever in the past 24 hours?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                How is your Experience ?
+                                            </div>
+                                            <div class="col-lg-12 my-3">
+                                                <div class="optionWrap">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" value="option1" name="condition" required>
+                                                            <span class="optionTxtWrap">
+                                                                <span class="optNumWrap">
+                                                                    <span class="optNum">1</span>
+                                                                </span>
+                                                                <span class="optTxt">Awful</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" value="option2" name="condition" required>
+                                                            <span class="optionTxtWrap">
+                                                                <span class="optNumWrap">
+                                                                    <span class="optNum">2</span>
+                                                                </span>
+                                                                <span class="optTxt">Bad</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" value="option3" name="condition" required>
+                                                            <span class="optionTxtWrap">
+                                                                <span class="optNumWrap">
+                                                                    <span class="optNum">3</span>
+                                                                </span>
+                                                                <span class="optTxt">Average</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" value="option4" name="condition" required>
+                                                            <span class="optionTxtWrap">
+                                                                <span class="optNumWrap">
+                                                                    <span class="optNum">4</span>
+                                                                </span>
+                                                                <span class="optTxt">Good</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" value="option5" name="condition" required>
+                                                            <span class="optionTxtWrap">
+                                                                <span class="optNumWrap">
+                                                                    <span class="optNum">5</span>
+                                                                </span>
+                                                                <span class="optTxt">Expert</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label for="TextFever">When did you first start noticing your fever?</label>
+                                            <input type="text" class="form-control" id="InputFever" name="InputFever" placeholder="Example. Fever started 2 days ago.">
+                                            <label for="TextFeverDegree">If you measured your fever, what temperatures have you recorded?</label> Please tell us the temperature in degrees Celsius, which part of your body you measured it (mouth, ear, armpit,
+                                            rectally, etc.), and what type of thermometer you used. Example:"101.2 F, Mouth, digital thermometer." If you haven't measured your fever, you may leave this question blank.
+                                            <input type="text" class="form-control" id="InputFeverDegree" name="InputFeverDegree" placeholder="Example. 37.5">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Do you have a cough, runny nose, shortness of breath, or any other respiratory symptoms?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Select"Yes" if you have at least one of these symptoms.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+
+                                            </div>
+                                            <label for="TextFever">Please describe any respiratory symptoms you are experiencing.</label>
+                                            <div class="col-lg-12">
+                                                Example:"I have been having a cough that produces yellow mucus and sputum. It started 3 days ago and at first was a 2 out of 10 but now is a 8 out of 10 in severity. I also have a runny nose."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputCough" name="InputCough">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+
+
+                            <fieldset>
+                                <legend>Do you have a headache?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Select"Yes" if you have headache.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+
+                                            </div>
+                                            <label for="TextHeadache">Please describe your headache below.</label>
+                                            <div class="col-lg-12">
+                                                Example:"My headache first started yesterday. It was a 1 out of 10 but is now a 9 out of 10 in severity. It is a dull pain in the back of my head. Moving my head makes it worse but it feels better when I lie down or take a Tylenol."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputHeadache" name="InputHeadache">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+
+
+                            <fieldset>
+                                <legend>Do you have a sore throat?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Select"Yes" if you have sore throat.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+                                            </div>
+                                            <label for="TextCough">Please describe any respiratory symptoms you are experiencing.</label>
+                                            <div class="col-lg-12">
+                                                Example: "I have been having a cough that produces yellow mucus and sputum. It started 3 days ago and at first was a 2 out of 10 but now is a 8 out of 10 in severity. I also have a runny nose."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputCough" name="InputCough">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Do you have diarrhea or any other gastrointestinal problems like stomachache, nausea and vomiting, or other issues?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Select"Yes" if you have sore throat.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+                                            </div>
+                                            <label for="TextGas">Please describe your gastrointestinal symptoms below.</label>
+                                            <div class="col-lg-12">
+                                                Example:"My diarrhea and stomachache started two days ago. I have had 3-6 episodes of diarrhea per day. My stomachache is a 7 out of 10 dull pain. Having a bowel movement makes both symptoms feel better temporarily."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputGas" name="InputGas">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+
+                            <fieldset>
+                                <legend>Do you have fatigue, tiredness, or a general feeling of malaise (feeling sick)?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                Select"Yes" if you have sore throat.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+                                            </div>
+                                            <label for="TextTierd">If you feel tired or sick, please describe your feelings below.</label>
+                                            <div class="col-lg-12">
+                                                Example:"I have been having a general feeling of being sick with my whole body feeling sour. It started yesterday but it getting worse to the point that I don 't feel like getting out of bed."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputTierd" name="InputTierd">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Have you had any contact with anyone with a travel history outside of this country or have you yourself traveled to another country recently?*</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+                                            </div>
+                                            <label for="TextTravel">Please describe any personal travel history or contact with someone who has traveled recently.</label>
+                                            <div class="col-lg-12">
+                                                Example:"My sister traveled to Sicily on a vacation one week ago and we have had close contact including hugging and sharing food."
+                                            </div>
+                                            <input type="text" class="form-control" id="InputTravel" name="InputTravel">
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Would you like to submit your answers for our medical professionals to carefully review?</legend>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                If you would like to submit your answers, select yes and click the submit button below. Otherwise, select no and/or close your browser. Thank you for taking the time to answer all of our questions.
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option1" name="condition" required>
+                                                Yes.
+                                            </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" value="option2" name="condition" required>
+                                                No.
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Final step</legend>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            Even though using"lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation,
+                                            so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation."Lorem ipsum" also approximates a typical distribution of letters in English.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputName1">Your name</label>
+                                                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Your name" name="your_name" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputCat1">Name of your cat</label>
+                                                    <input type="text" class="form-control" id="exampleInputCat1" name="exampleInputCat1" placeholder="Name of your cat">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputHam1"></label>
+                                                    <input type="text" class="form-control" id="exampleInputHam1" name="exampleInputHam1" placeholder="Name of your hamster">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputGrocer1"></label>
+                                                    <input type="text" class="form-control" id="exampleInputGrocer1" name="exampleInputGrocer1" placeholder="Name of your grocery seller">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="radio">
+                                                    <label>
+                                                    <input type="radio" name="optionsRadios" value="option1" checked>
+                                                    Option one is this and that&mdash;be sure to include why it's great </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                    <input type="radio" name="optionsRadios" value="option2">
+                                                    Option two can be something else and selecting it will deselect option one
+                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="checkbox">
+                                                    <label>
+                                                    <input type="checkbox" name="superPower"> I want have super-power
+                                                </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                    <input type="checkbox" name="moreSuperPower"> I have one or more super-power already
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>
+                                            Even though using"lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation,
+                                            so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation."Lorem ipsum" also approximates a typical distribution of letters in English.
+                                        </p>
+                                        <p>
+                                            Using"lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers
+                                            use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation."Lorem ipsum" also approximates a typical distribution of letters in English.
+                                        </p>
+                                    </div>
+                                    <noscript>
+                                    <input class="nocsript-finish-btn sf-right nocsript-sf-btn" type="submit" value="finish"/>
+                                </noscript>
+                                </div>
+                            </fieldset>
+                        </form>
+                        </div>
+                        </div>
+
+
+
+                        <footer class="footer">
+                            <div class="container">
+                                <p class="pull-left">© 2020</p>
+                            </div>
+                        </footer>
+                        </div>
+                        </div>
+                        </div>
+</body>
+
+</html>

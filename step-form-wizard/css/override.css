@@ -1,0 +1,147 @@
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../../assets/fonts-ar/DroidKufi-Regular.eot);
+    src: url(../../assets/fonts-ar/DroidKufi-Regular.eot?#iefix) format("embedded-opentype"),url(../../assets/fonts-ar/DroidKufi-Regular.woff2) format("x-woff2"),url(../../assets/fonts-ar/DroidKufi-Regular.woff) format("woff"),url(../../assets/fonts-ar/DroidKufi-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../../assets/fonts-ar/DroidKufi-Bold.eot);
+    src: url(../../assets/fonts-ar/DroidKufi-Bold.eot?#iefix) format("embedded-opentype"),url(../../assets/fonts-ar/DroidKufi-Bold.woff2) format("x-woff2"),url(../../assets/fonts-ar/DroidKufi-Bold.woff) format("woff"),url(../../assets/fonts-ar/DroidKufi-Bold.ttf) format("truetype")
+}
+
+html {
+    direction: rtl;
+    font-family: "Droid Arabic Kufi","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+body,
+.sf-t2 {
+    font-family: "Droid Arabic Kufi","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+}
+
+.footer {
+    margin: 20px 0 20px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.optionWrap {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto 20px;
+}
+
+    .optionWrap .radio {
+        flex: 1 20%;
+        padding: 10px 5px;
+        max-width: 20%;
+        margin: 0;
+        text-align: center;
+    }
+
+        .optionWrap .radio .optionTxtWrap {
+            text-align: center;
+        }
+
+            .optionWrap .radio .optionTxtWrap .optNumWrap {
+                display: block;
+                position: relative;
+                margin: 20px auto 24px;
+            }
+
+                .optionWrap .radio .optionTxtWrap .optNumWrap .optNum {
+                    border: 2px solid rgba(0, 0, 0, 0.1);
+                    font-family: sans-serif;
+                    border-radius: 50%;
+                    padding: 10px 15px;
+                    font-weight: bold;
+                    color: #646C80;
+                }
+
+            .optionWrap .radio .optionTxtWrap .optTxt {
+                display: block;
+                color: #4B4E5D;
+            }
+
+        .optionWrap .radio label {
+            padding: 0;
+        }
+
+            .optionWrap .radio label input[type="radio"] {
+                display: none;
+            }
+                /* .optionWrap .radio label input[type="radio"]:checked {} */
+                .optionWrap .radio label input[type="radio"]:checked + .optionTxtWrap .optNum {
+                    background: #2D6BC8;
+                    border-color: white;
+                    color: white;
+                }
+
+.sf-viewport .legend-with-label {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.legend-label {
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 50px;
+}
+
+
+.question {
+    font-size: 18px;
+    font-weight: normal;
+    color: #1D2D7B;
+}
+
+.sf-controls {
+    border: none;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.mb-6 {
+    margin-bottom: 6px !important;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.bg-gray {
+    background-color: #F2F2F2;
+}
+
+.content-bg {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 4px !important;
+}
