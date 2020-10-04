@@ -144,4 +144,19 @@ body,
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.1);
     border-radius: 4px !important;
+    padding-bottom: 30px;
+}
+
+
+.sf-t2 .sf-nav li.sf-active, .sf-t2.sf-nomob .sf-nav li.sf-nav-link:not(.sf-nav-step-disabled):not(.sf-nav-unlink):hover {
+    background: #1D2D7B;
+}
+
+.sf-t2 .sf-nav-top .sf-nav-step.sf-active:after {
+    border-color: #1D2D7B;
+}
+
+
+.sf-t2 .sf-nav li.sf-nav-mark-step:not(.sf-nav-step-disabled):not(.sf-active) {
+    background: #283d50;
 }
